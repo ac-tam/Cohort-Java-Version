@@ -7,6 +7,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Scanner;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -15,7 +16,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Label;  
 
 
@@ -28,18 +28,11 @@ public class Frame {
 	 * @param args
 	 */
 	public static String odd1, odd2, odd3, odd4, even1, even2, even3, even4, error;
-	private Text text;
-	private Text text_1;
-	private Text text_2;
-	private Text text_3;
-	private Text text_4;
-	private Text text_5;
-
 
 	public static void main(String[] args) throws FileNotFoundException, URISyntaxException {
 		FileWriter fw;
 		try {
-			error = "";
+			error = "Online version at andrewtam.org/cohort";
 			Scanner scanner = new Scanner(new File("schedule.txt"));
 			scanner.nextLine();
 			scanner.nextLine();
@@ -59,13 +52,34 @@ public class Frame {
 
 		}
 		catch (StringIndexOutOfBoundsException e) {
-			error = "Fix Schedule Format. Delete it to get a new File.";
-		}
+			try {
+				error = "Please input your schedule into schedule.txt, then restart the app";
+
+				System.out.println("NullPointE");
+				fw = new FileWriter("schedule.txt");
+				fw.write("Enter Schedule Below. Enter nothing to indicate no class.\n"
+						+ "Odd \n"
+						+ "Period 1: \n"
+						+ "Period 2: \n"
+						+ "Period 3: \n"
+						+ "Period 4: \n"
+						+ "\n"
+						+ "Even \n"
+						+ "Period 1: \n"
+						+ "Period 2: \n"
+						+ "Period 3: \n"
+						+ "Period 4: \n");
+				fw.close();
+				
+				openWebpage(new URI("schedule.txt"));
+			} catch (IOException ee) {
+				;
+			}		}
 		catch (NullPointerException e) {
 			try {
 				error = "Please input your schedule into schedule.txt, then restart the app";
 
-				System.out.println("nope");
+				System.out.println("NullPointE");
 				fw = new FileWriter("schedule.txt");
 				fw.write("Enter Schedule Below. Enter nothing to indicate no class.\n"
 						+ "Odd \n"
@@ -91,7 +105,7 @@ public class Frame {
 			try {
 				error = "Please input your schedule into schedule.txt, then restart the app";
 
-				System.out.println("nope");
+				System.out.println("FileNotFound");
 				fw = new FileWriter("schedule.txt");
 				fw.write("Enter Schedule Below. Enter nothing to indicate no class.\n"
 						+ "Odd \n"
@@ -144,7 +158,7 @@ public class Frame {
 	 */
 	protected void createContents() {
 		shell = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE));
-		shell.setSize(404, 321);
+		shell.setSize(400, 316);
 		shell.setDefaultButton(null);
 		shell.setText("Cohort Schedule");
 		shell.setLocation(300, 300);
@@ -166,7 +180,7 @@ public class Frame {
 		LocalDateTime now = LocalDateTime.now();
 		System.out.println(holidays(now.toLocalDate()));
 		
-		btnNewButton.setBounds(149, 48, 90, 30);
+		btnNewButton.setBounds(149, 48, 100, 30);
 		btnNewButton.setText("Odd Period 1");
 		
 		Button btnNewButton_1 = new Button(shell, SWT.NONE);
@@ -183,7 +197,7 @@ public class Frame {
 			
 		});
 		btnNewButton_1.setText("Odd Period 2");
-		btnNewButton_1.setBounds(149, 102, 90, 30);
+		btnNewButton_1.setBounds(149, 102, 100, 30);
 		
 		Button btnNewButton_2 = new Button(shell, SWT.NONE);
 		btnNewButton_2.addSelectionListener(new SelectionAdapter() {
@@ -199,7 +213,7 @@ public class Frame {
 			
 		});
 		btnNewButton_2.setText("Odd Period 3");
-		btnNewButton_2.setBounds(149, 157, 90, 30);
+		btnNewButton_2.setBounds(149, 157, 100, 30);
 		
 		Button btnNewButton_3 = new Button(shell, SWT.NONE);
 		btnNewButton_3.addSelectionListener(new SelectionAdapter() {
@@ -215,7 +229,7 @@ public class Frame {
 			
 		});
 		btnNewButton_3.setText("Odd Period 4");
-		btnNewButton_3.setBounds(149, 210, 90, 30);
+		btnNewButton_3.setBounds(149, 210, 100, 30);
 		
 		Button btnNewButton_4 = new Button(shell, SWT.NONE);
 		btnNewButton_4.addSelectionListener(new SelectionAdapter() {
@@ -231,7 +245,7 @@ public class Frame {
 			
 		});
 		btnNewButton_4.setText("Even Period 1");
-		btnNewButton_4.setBounds(272, 48, 90, 30);
+		btnNewButton_4.setBounds(272, 48, 100, 30);
 		
 		Button btnNewButton_5 = new Button(shell, SWT.NONE);
 		btnNewButton_5.addSelectionListener(new SelectionAdapter() {
@@ -247,7 +261,7 @@ public class Frame {
 			
 		});
 		btnNewButton_5.setText("Even Period 2");
-		btnNewButton_5.setBounds(272, 102, 90, 30);
+		btnNewButton_5.setBounds(272, 102, 100, 30);
 		
 		Button btnNewButton_6 = new Button(shell, SWT.NONE);
 		btnNewButton_6.addSelectionListener(new SelectionAdapter() {
@@ -263,7 +277,7 @@ public class Frame {
 			}
 		});
 		btnNewButton_6.setText("Even Period 3");
-		btnNewButton_6.setBounds(272, 157, 90, 30);
+		btnNewButton_6.setBounds(272, 157, 100, 30);
 		
 		Button btnNewButton_7 = new Button(shell, SWT.NONE);
 		btnNewButton_7.addSelectionListener(new SelectionAdapter() {
@@ -279,47 +293,35 @@ public class Frame {
 			}
 		});
 		btnNewButton_7.setText("Even Period 4");
-		btnNewButton_7.setBounds(272, 210, 90, 30);
+		btnNewButton_7.setBounds(272, 210, 100, 30);
 		
 		
 
 		
 		Label lblPeriod = new Label(shell, SWT.NONE);
-		lblPeriod.setBounds(20, 48, 55, 15);
+		lblPeriod.setBounds(20, 48, 83, 15);
 		lblPeriod.setText("Period 1");
 		
 		Label label = new Label(shell, SWT.NONE);
-		label.setBounds(20, 63, 55, 15);
+		label.setBounds(20, 63, 83, 26);
 		label.setText("8:32 - 9:47");
 		
 		Label lblPeriod_1 = new Label(shell, SWT.NONE);
-		lblPeriod_1.setBounds(20, 102, 55, 15);
+		lblPeriod_1.setBounds(20, 102, 83, 13);
 		lblPeriod_1.setText("Period 2");
 		
-		Label label_1 = new Label(shell, SWT.NONE);
-		label_1.setBounds(20, 117, 67, 15);
-		label_1.setText("9:55 - 11:10");
-		
 		Label lblPeriod_2 = new Label(shell, SWT.NONE);
-		lblPeriod_2.setBounds(20, 152, 55, 15);
+		lblPeriod_2.setBounds(20, 152, 83, 15);
 		lblPeriod_2.setText("Period 3");
 		
-		Label label_2 = new Label(shell, SWT.NONE);
-		label_2.setBounds(20, 165, 67, 15);
-		label_2.setText("11:18 - 12:33");
-		
 		Label lblPeriod_3 = new Label(shell, SWT.NONE);
-		lblPeriod_3.setBounds(20, 210, 55, 15);
+		lblPeriod_3.setBounds(20, 204, 83, 12);
 		lblPeriod_3.setText("Period 4");
-		
-		Label label_3 = new Label(shell, SWT.NONE);
-		label_3.setBounds(20, 225, 67, 15);
-		label_3.setText("12:41 - 1:56");
 		
 		
 		
 		Label label_4 = new Label(shell, SWT.NONE);
-		label_4.setBounds(25, 256, 353, 26);
+		label_4.setBounds(20, 257, 371, 20);
 		label_4.setText(error);
 	
 		if ((odd1 + odd2 + odd3 + odd4 + even1 + even2 + even3 + even4).equals("")) {
@@ -336,22 +338,97 @@ public class Frame {
 		
 		String cohort = "Cohort";
 		
+		int schoolDate = schoolDays(now.toLocalDate());
+		if (schoolDate % 6 == 0)
+			cohort = "Odd Cycle A";
+		if (schoolDate % 6 == 1)
+			cohort = "Even Cycle A";
+		if (schoolDate % 6 == 2)
+			cohort = "Odd Cycle B";
+		if (schoolDate % 6 == 3)
+			cohort = "Even Cycle B";
+		if (schoolDate % 6 == 4)
+			cohort = "Odd Cycle C"; 
+		if (schoolDate % 6 == 5)
+			cohort = "Even Cycle C";
+		
+		if (schoolDate % 2 == 0) {
+			if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(12, 30))))
+				btnNewButton_3.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
+			else if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(11, 10))))
+				btnNewButton_2.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
+			else if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(9, 50))))
+				btnNewButton_1.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
+			else if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(8, 00))))
+				btnNewButton.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
+		}
+		
+		else
+		{ 
+			if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(12, 30))))
+				btnNewButton_7.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
+			else if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(11, 10))))
+					btnNewButton_6.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
+			else if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(9, 50))))
+				btnNewButton_5.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
+			else if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(8, 00))))
+					btnNewButton_4.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
+		}
+			
+			
+		
+		
 		Label lblCohortA = new Label(shell, SWT.NONE);
-		lblCohortA.setBounds(20, 10, 55, 15);
-		lblCohortA.setText("Cohort A");
+		lblCohortA.setBounds(225, 10, 111, 15);
+		lblCohortA.setText(cohort);
 		
+		Label label_3 = new Label(shell, SWT.NONE);
+		label_3.setBounds(20, 218, 83, 22);
+		label_3.setText("12:41 - 1:56");
 		
+		Label label_2 = new Label(shell, SWT.NONE);
+		label_2.setBounds(20, 165, 83, 30);
+		label_2.setText("11:18 - 12:33");
+		
+		Label label_1 = new Label(shell, SWT.NONE);
+		label_1.setBounds(20, 117, 83, 29);
+		label_1.setText("9:55 - 11:10");
+		
+		Button btnNewButton_8 = new Button(shell, SWT.NONE);
+		btnNewButton_8.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				try {
+					openWebpage(new URI("schedule.txt"));
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_8.setText("Edit Schedule");
+		btnNewButton_8.setBounds(20, 2, 100, 30);
+		btnNewButton_8.setBackgroundImage(null);
+		
+		System.out.println(schoolDays(now.toLocalDate()));
 		
 
 	}
+	int schoolDays(LocalDate date) {
+		
+	        long day = -1 + date.toEpochDay() - LocalDate.of(2020, 9, 21).toEpochDay();
+	        return (int) (day - Math.floor(day / 7) * 2 - holidays(date));
+	    
+	}
+
+
 	int holidays(LocalDate date) {
         LocalDate[] holidaysArr = {
-		LocalDate.of(2020, 9, 20),
 		 LocalDate.of(2020, 9, 28),
-		 LocalDate.of(2020, 10, 13),
+		 LocalDate.of(2020, 10, 12),
+		 LocalDate.of(2020, 11, 11),
 		 LocalDate.of(2020, 11, 26),
 		 LocalDate.of(2020, 11, 27),
-		 LocalDate.of(2020, 11, 28),
 		 LocalDate.of(2020, 12, 24),
 		 LocalDate.of(2020, 12, 25),
 		 LocalDate.of(2020, 12, 26),
