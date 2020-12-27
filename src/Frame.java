@@ -158,10 +158,10 @@ public class Frame {
 	 */
 	protected void createContents() {
 		shell = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE));
-		shell.setSize(400, 316);
+		shell.setSize(422, 335);
 		shell.setDefaultButton(null);
 		shell.setText("Cohort Schedule");
-		shell.setLocation(300, 300);
+		shell.setLocation(700, 500);
 		
 		
 		Button btnNewButton = new Button(shell, SWT.NONE);
