@@ -205,6 +205,7 @@ public class Frame {
 			public void widgetSelected(SelectionEvent e) {
 				try {
 					openWebpage(new URI(odd3));
+
 				} catch (URISyntaxException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -221,6 +222,7 @@ public class Frame {
 				public void widgetSelected(SelectionEvent e) {
 					try {
 						openWebpage(new URI(odd4));
+
 					} catch (URISyntaxException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -438,7 +440,23 @@ public class Frame {
 		 LocalDate.of(2020, 12, 30),
 		 LocalDate.of(2020, 12, 31),
 		 LocalDate.of(2021, 1, 1),
-		 LocalDate.of(2021, 1, 17)
+		 LocalDate.of(2021, 1, 17),
+		 LocalDate.of(2021, 2, 1),
+		 LocalDate.of(2021, 2, 12),
+		 LocalDate.of(2021, 2, 15),
+		 LocalDate.of(2021, 2, 16),
+		 LocalDate.of(2021, 2, 17),
+		 LocalDate.of(2021, 2, 18),
+		 LocalDate.of(2021, 2, 19),
+		 LocalDate.of(2021, 3, 29),
+		 LocalDate.of(2021, 3, 30),
+		 LocalDate.of(2021, 3, 31),
+		 LocalDate.of(2021, 4, 1),
+		 LocalDate.of(2021, 4, 2),
+		 LocalDate.of(2021, 5, 13),
+		 LocalDate.of(2021, 5, 31),
+		 LocalDate.of(2021, 6, 3)
+		 
         };
 
         for (int i = holidaysArr.length - 1; i > -1 ; i--)
