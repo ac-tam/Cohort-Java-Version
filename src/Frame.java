@@ -1,6 +1,10 @@
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Label;  
 import java.awt.Desktop;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -9,14 +13,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Scanner;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.eclipse.swt.widgets.Label;  
 
 
 public class Frame {
@@ -161,7 +161,7 @@ public class Frame {
 		shell.setSize(422, 335);
 		shell.setDefaultButton(null);
 		shell.setText("Cohort Schedule");
-		shell.setLocation(700, 500);
+		shell.setLocation(500, 500);
 		
 		
 		Button btnNewButton = new Button(shell, SWT.NONE);
@@ -297,27 +297,24 @@ public class Frame {
 		btnNewButton_7.setText("Even Period 4");
 		btnNewButton_7.setBounds(272, 210, 100, 30);
 		
-		
-
-		
 		Label lblPeriod = new Label(shell, SWT.NONE);
-		lblPeriod.setBounds(20, 48, 83, 15);
+		lblPeriod.setBounds(20, 45, 83, 20);
 		lblPeriod.setText("Period 1");
 		
 		Label label = new Label(shell, SWT.NONE);
-		label.setBounds(20, 63, 83, 26);
+		label.setBounds(20, 62, 83, 20);
 		label.setText("8:32 - 9:47");
 		
 		Label lblPeriod_1 = new Label(shell, SWT.NONE);
-		lblPeriod_1.setBounds(20, 102, 83, 13);
+		lblPeriod_1.setBounds(20, 89, 83, 19);
 		lblPeriod_1.setText("Period 2");
 		
 		Label lblPeriod_2 = new Label(shell, SWT.NONE);
-		lblPeriod_2.setBounds(20, 152, 83, 15);
+		lblPeriod_2.setBounds(20, 145, 83, 20);
 		lblPeriod_2.setText("Period 3");
 		
 		Label lblPeriod_3 = new Label(shell, SWT.NONE);
-		lblPeriod_3.setBounds(20, 204, 83, 12);
+		lblPeriod_3.setBounds(20, 196, 83, 20);
 		lblPeriod_3.setText("Period 4");
 		
 		
@@ -336,23 +333,17 @@ public class Frame {
 			}
 			
 		}
-
-		
 		String cohort = "Cohort";
-		
 		int schoolDate = schoolDays(now.toLocalDate());
-		if (schoolDate % 6 == 0)
+		if (schoolDate % 4 == 0)
 			cohort = "Odd Cycle A";
-		if (schoolDate % 6 == 1)
+		if (schoolDate % 4 == 1)
 			cohort = "Even Cycle A";
-		if (schoolDate % 6 == 2)
+		if (schoolDate % 4 == 2)
 			cohort = "Odd Cycle B";
-		if (schoolDate % 6 == 3)
+		if (schoolDate % 4 == 3)
 			cohort = "Even Cycle B";
-		if (schoolDate % 6 == 4)
-			cohort = "Odd Cycle C"; 
-		if (schoolDate % 6 == 5)
-			cohort = "Even Cycle C";
+
 		
 		if (schoolDate % 2 == 0) {
 			if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(12, 30))))
@@ -385,15 +376,15 @@ public class Frame {
 		lblCohortA.setText(cohort);
 		
 		Label label_3 = new Label(shell, SWT.NONE);
-		label_3.setBounds(20, 218, 83, 22);
+		label_3.setBounds(20, 215, 83, 22);
 		label_3.setText("12:41 - 1:56");
 		
 		Label label_2 = new Label(shell, SWT.NONE);
-		label_2.setBounds(20, 165, 83, 30);
+		label_2.setBounds(20, 164, 83, 20);
 		label_2.setText("11:18 - 12:33");
 		
 		Label label_1 = new Label(shell, SWT.NONE);
-		label_1.setBounds(20, 117, 83, 29);
+		label_1.setBounds(20, 111, 83, 22);
 		label_1.setText("9:55 - 11:10");
 		
 		Button btnNewButton_8 = new Button(shell, SWT.NONE);
@@ -409,7 +400,7 @@ public class Frame {
 			}
 		});
 		btnNewButton_8.setText("Edit Schedule");
-		btnNewButton_8.setBounds(20, 2, 100, 30);
+		btnNewButton_8.setBounds(0, 3, 100, 30);
 		btnNewButton_8.setBackgroundImage(null);
 		
 		System.out.println(schoolDays(now.toLocalDate()));
@@ -453,6 +444,7 @@ public class Frame {
 		 LocalDate.of(2021, 3, 31),
 		 LocalDate.of(2021, 4, 1),
 		 LocalDate.of(2021, 4, 2),
+		 LocalDate.of(2021, 4, 14),
 		 LocalDate.of(2021, 5, 13),
 		 LocalDate.of(2021, 5, 31),
 		 LocalDate.of(2021, 6, 3)
