@@ -445,6 +445,7 @@ public class Frame {
 		 LocalDate.of(2021, 4, 1),
 		 LocalDate.of(2021, 4, 2),
 		 LocalDate.of(2021, 4, 14),
+		 LocalDate.of(2021, 5, 3),
 		 LocalDate.of(2021, 5, 13),
 		 LocalDate.of(2021, 5, 31),
 		 LocalDate.of(2021, 6, 3)
