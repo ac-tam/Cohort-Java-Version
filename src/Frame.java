@@ -2,10 +2,14 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Label;  
 import java.awt.Desktop;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -22,11 +26,6 @@ import java.io.IOException;
 public class Frame {
 
 	protected Shell shell;
-
-	/**
-	 * Launch the application.
-	 * @param args
-	 */
 	public static String odd1, odd2, odd3, odd4, even1, even2, even3, even4, error;
 
 	public static void main(String[] args) throws FileNotFoundException, URISyntaxException {
@@ -46,10 +45,6 @@ public class Frame {
 			even2 = scanner.nextLine().substring(10);
 			even3 = scanner.nextLine().substring(10);
 			even4 = scanner.nextLine().substring(10);
-
-
-
-
 		}
 		catch (StringIndexOutOfBoundsException e) {
 			try {
@@ -72,9 +67,8 @@ public class Frame {
 				fw.close();
 				
 				openWebpage(new URI("schedule.txt"));
-			} catch (IOException ee) {
-				;
-			}		}
+			} catch (IOException ee) {;}		
+		}
 		catch (NullPointerException e) {
 			try {
 				error = "Please input your schedule into schedule.txt, then restart the app";
@@ -96,11 +90,8 @@ public class Frame {
 				fw.close();
 				
 				openWebpage(new URI("schedule.txt"));
-			} catch (IOException ee) {
-				;
-			}
+			} catch (IOException ee) {;}
 		}
-		
 		catch (FileNotFoundException e) {
 			try {
 				error = "Please input your schedule into schedule.txt, then restart the app";
@@ -123,12 +114,8 @@ public class Frame {
 				
 				openWebpage(new URI("schedule.txt"));
 						
-			} catch (IOException ee) {
-				;
-			}
-			
+			} catch (IOException ee) {;}
 		}
-			
 		try {
 			Frame window = new Frame();
 			window.open();
@@ -163,6 +150,11 @@ public class Frame {
 		shell.setText("Cohort Schedule");
 		shell.setLocation(500, 500);
 		
+		LocalDateTime now = LocalDateTime.now();
+		System.out.println(holidays(now.toLocalDate()));
+		
+		
+		
 		
 		Button btnNewButton = new Button(shell, SWT.NONE);
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
@@ -176,9 +168,6 @@ public class Frame {
 				}
 			}
 		});
-		
-		LocalDateTime now = LocalDateTime.now();
-		System.out.println(holidays(now.toLocalDate()));
 		
 		btnNewButton.setBounds(149, 48, 100, 30);
 		btnNewButton.setText("Odd Period 1");
@@ -297,6 +286,16 @@ public class Frame {
 		btnNewButton_7.setText("Even Period 4");
 		btnNewButton_7.setBounds(272, 210, 100, 30);
 		
+		btnNewButton.setBackground(new org.eclipse.swt.graphics.Color(230,230,230));
+		btnNewButton_1.setBackground(new org.eclipse.swt.graphics.Color(230,230,230));
+		btnNewButton_2.setBackground(new org.eclipse.swt.graphics.Color(230,230,230));
+		btnNewButton_3.setBackground(new org.eclipse.swt.graphics.Color(230,230,230));
+		btnNewButton_4.setBackground(new org.eclipse.swt.graphics.Color(230,230,230));
+		btnNewButton_5.setBackground(new org.eclipse.swt.graphics.Color(230,230,230));
+		btnNewButton_6.setBackground(new org.eclipse.swt.graphics.Color(230,230,230));
+		btnNewButton_7.setBackground(new org.eclipse.swt.graphics.Color(230,230,230));
+		
+		
 		Label lblPeriod = new Label(shell, SWT.NONE);
 		lblPeriod.setBounds(20, 45, 83, 20);
 		lblPeriod.setText("Period 1");
@@ -333,6 +332,8 @@ public class Frame {
 			}
 			
 		}
+		
+		
 		String cohort = "Cohort";
 		int schoolDate = schoolDays(now.toLocalDate());
 		if (schoolDate % 4 == 0)
@@ -387,6 +388,7 @@ public class Frame {
 		label_1.setBounds(20, 111, 83, 22);
 		label_1.setText("9:55 - 11:10");
 		
+	
 		Button btnNewButton_8 = new Button(shell, SWT.NONE);
 		btnNewButton_8.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -403,17 +405,58 @@ public class Frame {
 		btnNewButton_8.setBounds(0, 3, 100, 30);
 		btnNewButton_8.setBackgroundImage(null);
 		
-		System.out.println(schoolDays(now.toLocalDate()));
 		
 
+		System.out.println(schoolDays(now.toLocalDate()));
+		
+		shell.addFocusListener(new FocusListener() {
+			public void focusGained(FocusEvent arg0) {
+				LocalDateTime now = LocalDateTime.now();
+			
+				btnNewButton.setBackground(new org.eclipse.swt.graphics.Color(230,230,230));
+				btnNewButton_1.setBackground(new org.eclipse.swt.graphics.Color(230,230,230));
+				btnNewButton_2.setBackground(new org.eclipse.swt.graphics.Color(230,230,230));
+				btnNewButton_3.setBackground(new org.eclipse.swt.graphics.Color(230,230,230));
+				btnNewButton_4.setBackground(new org.eclipse.swt.graphics.Color(230,230,230));
+				btnNewButton_5.setBackground(new org.eclipse.swt.graphics.Color(230,230,230));
+				btnNewButton_6.setBackground(new org.eclipse.swt.graphics.Color(230,230,230));
+				btnNewButton_7.setBackground(new org.eclipse.swt.graphics.Color(230,230,230));
+
+				if (schoolDate % 2 == 0) {
+					if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(12, 30))))
+						btnNewButton_3.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
+					else if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(11, 10))))
+						btnNewButton_2.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
+					else if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(9, 51))))
+						btnNewButton_1.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
+					else if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(8, 00))))
+						btnNewButton.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
+				}
+				else
+				{ 
+					if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(12, 30))))
+						btnNewButton_7.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
+					else if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(11, 10))))
+							btnNewButton_6.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
+					else if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(9, 50))))
+						btnNewButton_5.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
+					else if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(8, 00))))
+							btnNewButton_4.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				System.out.println("Focus Lost");
+			}
+		});
 	}
+	
 	int schoolDays(LocalDate date) {
 		
 	        long day = -1 + date.toEpochDay() - LocalDate.of(2020, 9, 21).toEpochDay();
 	        return (int) (day - Math.floor(day / 7) * 2 - holidays(date));
 	    
 	}
-
 
 	int holidays(LocalDate date) {
         LocalDate[] holidaysArr = {
