@@ -427,7 +427,7 @@ public class Frame {
 						btnNewButton_3.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
 					else if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(11, 10))))
 						btnNewButton_2.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
-					else if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(9, 51))))
+					else if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(9, 45))))
 						btnNewButton_1.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
 					else if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(8, 00))))
 						btnNewButton.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
@@ -438,7 +438,7 @@ public class Frame {
 						btnNewButton_7.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
 					else if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(11, 10))))
 							btnNewButton_6.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
-					else if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(9, 50))))
+					else if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(9, 45))))
 						btnNewButton_5.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
 					else if (now.isAfter(LocalDateTime.of(now.toLocalDate(), LocalTime.of(8, 00))))
 							btnNewButton_4.setBackground(new org.eclipse.swt.graphics.Color(144,238,144));
